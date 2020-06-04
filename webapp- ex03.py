@@ -128,6 +128,31 @@ def mysession():
         return True
     else: 
         return False
+    
+@app.route('/Search', methods=['GET', 'POST'])
+@app.route('/search', methods=['GET', 'POST'])
+def Search():
+    if request.method == "POST":
+        dataset = request.form['dataset']
+        Database = open('Database.txt')
+        connStr = Database.readline()
+        conn = connect(connStr)
+                
+        cur = conn.cursor()      
+        cur.execute(
+            """SELECT interview_date, gender, marital_status, religion, patient_education_level, ethinc_group FROM data_table WHERE 
+            interview_date LIKE %s OR gender LIKE %s OR marital_status LIKE %s OR religion LIKE %s OR patient_education_level LIKE %s OR ethinc_group LIKE %s""",
+                         (dataset,dataset))
+                          
+        conn.commit()
+        data = cur.fetchall()
+        
+        if len(data) == 0 and dataset == 'all': 
+            cur.execute("SELECT interview_date, gender, marital_status, religion, patient_education_level, ethinc_group from data_table")
+            conn.commit()
+            data = cur.fetchall()
+        return render_template('search.html', data=data)
+    return render_template('search.html')
 
 
 if (__name__)=='__main__':
