@@ -26,32 +26,32 @@ def enddb_conn():
         g.pop('db')
 
 @app.route("/")
-@app.route("/")
-@app.route("/")
+@app.route("/Home")
+@app.route("/home")
 def home():
     
     mysession()
     return render_template("index.html")    
 
-@app.route('/')
-@app.route('/')
+@app.route('/About')
+@app.route('/about')
 def About():
     return render_template('about.html')   
 
-@app.route('/', methods=('GET', 'POST'))
-@app.route('/', methods=('GET', 'POST'))
+@app.route('/Register', methods=('GET', 'POST'))
+@app.route('/register', methods=('GET', 'POST'))
 def Register():
      if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         email    = request.form['email']
         age      = request.form['age']
-        error = None
+        error    = None
 
         if not username:
-            error = 'Username is required.'
+            error = 'Username required.'
         elif not password:
-            error = 'Password is required.'
+            error = 'Password required.'
         else :
             conn = conn_db()
             cur = conn.cursor()
@@ -61,6 +61,7 @@ def Register():
                 cur.close()
 
         if error is None:
+            print('
             conn = conn_db()
             cur = conn.cursor()
             cur.execute(
@@ -74,8 +75,8 @@ def Register():
     
      return render_template('Register.html')
 
-@app.route('/', methods=('GET', 'POST'))
-@app.route('/', methods=('GET', 'POST'))
+@app.route('/Login', methods=('GET', 'POST'))
+@app.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         
@@ -106,7 +107,8 @@ def login():
         
     return render_template('Login.html')
 
-@app.route('/')
+@app.route('/Logout')
+@app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('home'))
