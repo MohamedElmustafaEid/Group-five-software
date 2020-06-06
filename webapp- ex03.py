@@ -49,15 +49,15 @@ def Register():
         error    = None
 
         if not username:
-            error = 'Username required.'
+            error = 'Please fill out this field.'
         elif not password:
-            error = 'Password required.'
+            error = 'Please fill out this field.'
         else :
             conn = conn_db()
             cur = conn.cursor()
             cur.execute('SELECT userid FROM sys_table WHERE username = %s', (username,))
             if cur.fetchone() is not None:
-                error = 'Username already used! try another one'
+                error = 'Username already used! try another one please!'
                 cur.close()
 
         if error is None:
@@ -94,9 +94,9 @@ def login():
         
         #sys is defined in the three lines above
         if sys is None:
-            error = 'Login failed! Wrong username'
+            error = 'Login failed! Wrong Username!'
         elif not check_password_hash(sys[2], password):
-            error = 'Login failed! Wrong password'
+            error = 'Login failed! Wrong Password!'
             
         if error is None:
             session.clear()
