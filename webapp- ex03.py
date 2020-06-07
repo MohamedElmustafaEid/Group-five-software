@@ -255,7 +255,10 @@ def Search():
         Database = open('Database.txt')
         connStr = Database.readline()
         conn = connect(connStr)
-                
+        if not dataset:
+            error = " please fill the search"
+            flash(error)     
+                  
         cur = conn.cursor()      
         cur.execute(
             """SELECT  "Patient_id", "Gender", "Marital_Status", "Religion", "Education_level" FROM data_table WHERE 
