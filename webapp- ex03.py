@@ -130,6 +130,122 @@ def mysession():
         return True
     else: 
         return False
+                  
+@app.route('/Comments')
+@app.route('/Comments')
+def Comments():
+    myFile = open('Database.txt')
+    connStr = myFile.readline()
+    conn = connect(connStr)
+    cur = conn.cursor()
+    cur.execute(
+            """SELECT sys_table.username, comment_table.comment_id, comment_table.comment 
+               FROM sys_table, comment_table WHERE  
+                    sys_table.userid = comment_table.userid """
+                    )
+    comment_table1 = cur.fetchall()
+    cur.close()
+    conn.commit()
+    conn.close()
+    mysession()
+
+    return render_template('comments.html', comment_table1=comment_table1)
+
+
+@app.route('/AddComment', methods=('GET', 'POST'))
+@app.route('/addcomment', methods=('GET', 'POST'))
+@app.route('/Addcomment', methods=('GET', 'POST'))
+@app.route('/addComment', methods=('GET', 'POST'))
+def AddComment():
+    if mysession():
+        if request.method == 'POST' :
+            comment = request.form['comment']
+            error = None
+           
+            if error is not None :
+                flash(error)
+                return redirect(url_for('Comments'))
+            else : 
+                    Database = open('Database.txt')
+                    connStr = Database.readline()
+                    conn = connect(connStr)
+                    cur = conn.cursor()
+                    cur.execute('INSERT INTO comment_table ( comment, userid) VALUES (%s, %s)', 
+                               (comment, g.user[0])
+                               )
+                    cur.close()
+                    conn.commit()
+                    conn.close()
+                    return redirect(url_for('Comments'))
+        else :
+            return render_template('AddComment.html')
+    else :
+        error = 'Only loggedin users can add comments!'
+        flash(error)
+        return redirect(url_for('login'))
+@app.route('/get_comment')
+@app.route('/get_comment')  
+def get_comment(id):
+    conn = conn_db()
+    cur = conn.cursor()
+    cur.execute(
+        """SELECT *
+           FROM comment_table
+           WHERE comment_table.comment_id = %s""",
+        (id,)
+    )
+    comment_table2 = cur.fetchone()
+    cur.close()
+    if comment_table2 is None:
+        abort(404, "comment id {0} doesn't exist.".format(id))
+
+    if comment_table2[1] != g.user[0]:
+        abort(403)
+
+    return render_template('show2.html', comment_table2=comment_table2)
+
+@app.route('/EditComment')
+@app.route('/EditComment')
+def EditComment(id):
+    if mysession():
+        comment_table = get_comment(id)
+        if request.method == 'POST' :
+            comment = request.form['comment']
+            error = None
+            if error is not None :
+                flash(error)
+                return redirect(url_for('Comments'))
+            else : 
+                Database = open('Database.txt')
+                connStr = Database.readline()
+                conn = connect(connStr)
+                cur = conn.cursor()
+                cur.execute('UPDATE comment_table SET comment = %s'
+                               'WHERE comment_id = %s', 
+                               (comment, id)
+                               )
+                cur.close()
+                conn.commit()
+                conn.close()
+                return redirect(url_for('Comments'))
+        else :
+            return render_template('EditComment.html', comment_table=comment_table)
+    else :
+        error = 'Only loggedin users can edit comments!'
+        flash(error)
+        return redirect(url_for('login'))
+
+@app.route('/<int:id>/delete', methods=('POST',))
+def delete(id):
+    Database = open('Database.txt')
+    connStr = Database.readline()
+    conn = connect(connStr)
+                
+    cur = conn.cursor()
+    cur.execute('DELETE FROM comment_table WHERE comment_id = %s', (id,))
+    conn.commit()
+    conn.close()
+    return redirect(url_for('Comments'))              
     
 @app.route('/Search', methods=['GET', 'POST'])
 @app.route('/search', methods=['GET', 'POST'])
