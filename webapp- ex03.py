@@ -258,18 +258,17 @@ def Search():
                 
         cur = conn.cursor()      
         cur.execute(
-            """SELECT interview_date, gender, marital_status, religion, patient_education_level, ethinc_group FROM data_table WHERE 
-            interview_date LIKE %s OR gender LIKE %s OR marital_status LIKE %s OR religion LIKE %s OR patient_education_level LIKE %s OR ethinc_group LIKE %s""",
-                         (dataset,dataset))
+            """SELECT  "Patient_id", "Gender", "Marital_Status", "Religion", "Education_level" FROM data_table WHERE 
+            "Patient_id" LIKE %s OR "Gender" LIKE %s OR "Marital_Status" LIKE %s OR "Religion" LIKE %s OR "Education_level" LIKE  %s""",(dataset,dataset,dataset,dataset,dataset,))
                           
         conn.commit()
         data = cur.fetchall()
-        
+       
         if len(data) == 0 and dataset == 'all': 
-            cur.execute("SELECT interview_date, gender, marital_status, religion, patient_education_level, ethinc_group from data_table")
+            cur.execute("""SELECT  "Gender", "Marital_Status", "Religion", "Education_level" FROM  data_table """)
             conn.commit()
             data = cur.fetchall()
-        return render_template('search.html', data=data)
+        return render_template('search.html', data=data,)
     return render_template('search.html')
 
 
