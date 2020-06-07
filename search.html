@@ -1,0 +1,229 @@
+<!-- Search Bar -->
+<!DOCTYPE html>
+<html>
+    <head>
+	 <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Data Search</title>
+    <link rel="icon" href="static/img/Polilogo.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="static/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="static/css/owl.carousel.min.css">
+    <!-- themify CSS -->
+    <link rel="stylesheet" href="static/css/themify-icons.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="static/css/flaticon.css">
+    <!-- magnific popup CSS -->
+    <link rel="stylesheet" href="static/css/magnific-popup.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="static/css/nice-select.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="static/css/slick.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="static/css/style.css">
+	
+	
+	
+    <meta name="viewport" content="width=device-width, initial-  
+    scale=1">
+    <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-
+        awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/index.css">
+    </head>
+	
+	
+	
+	 <!--::header part start::-->
+    <header class="main_menu">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                       <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"> <img src="static/img/Polilogo.png" alt="logo"> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+    
+                            <div class="collapse navbar-collapse main-menu-item justify-content-end"
+                                id="navbarSupportedContent">
+                                <ul class="navbar-nav align-items-center">
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="home">Home</a>
+                                    </li>
+									<li class="nav-item active">
+                                        <a class="nav-link" href="Comments">See the comments</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="about">about</a>
+                                    </li>                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact">Contact</a>
+                                    </li>                                    
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Header part end-->
+
+    <body>
+	
+	
+	
+	<section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2>Extract the data as you want</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <h1><center>Dataset</center></h1>
+        <form class="example" method="post" action="" 
+         style="margin:auto;max-width:600px">
+            <input type="text" placeholder="Search by interview date, gender, marital status, religion, patient education level or ethinc group" name="dataset">
+            
+			<input type="submit" value="Search" >
+            </button>
+			
+        </form>
+        <p></p>
+        <center>
+		<table>
+        {% for item in data %}
+            <tr>
+                <td> {{item[0]}} ---- {{item[1]}}    {{item[2]}} ---- {{item[3]}} ---- {{item[4]}}</</td>
+                </br>
+            </tr>
+        {% endfor %}
+		</table>
+        </center>
+		{% for message in get_flashed_messages() %}
+                           <h3> <div class = "flash">{{ message }}</div></h3>
+                        {% endfor %}
+		
+		
+	<!--::review_part start::-->
+    <section class="review_part">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="client_review_part owl-carousel">
+                        <div class="client_review_single">
+                            <img src="static/img/Quote.png" class="Quote" alt="quote">
+                            <div class="client_review_text">
+                                <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
+                                    god dea earth light for life may itself shall whales made they're blessed whales
+                                    also made from give
+                                    may saying meat. There from heaven it lights face had amazing place</p>
+                            </div>
+                            <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                        </div>
+                        <div class="client_review_single">
+                            <img src="img/Quote.png" class="Quote" alt="quote">
+                            <div class="client_review_text media-body">
+                                <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
+                                    god dea earth light for life may itself shall whales made they're blessed whales
+                                    also made from give
+                                    may saying meat. There from heaven it lights face had amazing place</p>
+                            </div>
+                            <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                        </div>
+                        <div class="client_review_single">
+                            <img src="static/img/Quote.png" class="Quote" alt="quote">
+                            <div class="client_review_text">
+                                <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
+                                    god dea earth light for life may itself shall whales made they're blessed whales
+                                    also made from give
+                                    may saying meat. There from heaven it lights face had amazing place</p>
+                            </div>
+                            <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                        </div>
+                        <div class="client_review_single">
+                            <img src="static/img/Quote.png" class="Quote" alt="quote">
+                            <div class="client_review_text">
+                                <p>Also made from. Give may saying meat there from heaven it lights face had is gathered
+                                    god dea earth light for life may itself shall whales made they're blessed whales
+                                    also made from give
+                                    may saying meat. There from heaven it lights face had amazing place</p>
+                            </div>
+                            <h4>Mosan Cameron, <span>Executive of fedex</span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+		
+		
+	<!--:: intro_video_bg start-->
+    <section class="intro_video_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro_video_iner text-center">
+                        <h2>View Our History</h2>
+                        <div class="intro_video_icon">
+                            <a id="play-video_1" class="video-play-button popup-youtube"
+                               href="https://www.facebook.com/228400027225771/videos/244474042899255/">
+                                <span class="ti-control-play"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- intro_video_bg part start-->
+		
+		
+		
+		
+		
+		
+		
+		 <!-- jquery plugins here-->
+
+    <script src="js/jquery-1.12.1.min.js"></script>
+    <!-- popper js -->
+    <script src="js/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="js/jquery.magnific-popup.js"></script>
+    <!-- swiper js -->
+    <script src="js/swiper.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/masonry.pkgd.js"></script>
+    <!-- particles js -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/slick.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <!-- contact js -->
+    <script src="js/jquery.ajaxchimp.min.js"></script>
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/mail-script.js"></script>
+    <script src="js/contact.js"></script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    </body>
+</html>
